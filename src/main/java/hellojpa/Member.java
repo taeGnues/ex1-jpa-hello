@@ -12,9 +12,7 @@ public class Member extends BaseEntity{
     @Column(name = "USERNAME")
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
+
 
 
 
