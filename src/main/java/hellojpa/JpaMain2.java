@@ -57,6 +57,7 @@ public class JpaMain2 {
             // 이렇게 순서를 바꿔버리면 m2는 proxy를 반환하게 됨!!
 
             System.out.println(ref.getClass());
+            // em.detach(ref); 이걸 넣을 경우 ref 프록시를 초기화할 수 없음!!! (영속성 컨텍스트에서 관리하기 때문)
             ref.getName(); // 강제호출.
             System.out.println(emf.getPersistenceUnitUtil().isLoaded(ref)); // 인스턴스 초기화된 경우 true/아니면 false
             // 지금의 경우는 true를 반환
@@ -72,7 +73,9 @@ public class JpaMain2 {
             tx.commit(); // 트랜잭션 커밋 시 플러시가 자동으로 호출됨.
             // em.createQeury() 같이 JPQL 쿼리를 실행 시 플러시를 자동호출한다.
         }catch (Exception e){
+            e.printStackTrace();
             tx.rollback();
+
         }finally {
             em.close();
         }

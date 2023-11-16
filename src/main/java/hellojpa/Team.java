@@ -13,11 +13,7 @@ public class Team extends BaseEntity{
 
     private String name;
 
-
-
-//
-    @OneToMany
-    @JoinColumn(name = "MEMBERS")
+    @OneToMany(mappedBy = "team")
     private List<Member> members = new ArrayList<>(); // 양방향. 테이블에는 영향을 주지 않음.
 
     public Long getId() {
