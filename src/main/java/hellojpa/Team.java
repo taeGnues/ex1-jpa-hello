@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team {
+public class Team extends BaseEntity{
     @Id
     @GeneratedValue
     @Column(name = "TEAM_ID")
@@ -13,8 +13,12 @@ public class Team {
 
     private String name;
 
-    @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
+
+
+//
+    @OneToMany
+    @JoinColumn(name = "MEMBERS")
+    private List<Member> members = new ArrayList<>(); // 양방향. 테이블에는 영향을 주지 않음.
 
     public Long getId() {
         return id;
